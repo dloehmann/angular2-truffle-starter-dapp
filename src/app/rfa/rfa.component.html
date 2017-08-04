@@ -1,0 +1,54 @@
+<div style="text-align:left">
+  <h1>
+    RFA
+  </h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-responsive table-striped table-bordered table-hover">
+      <tr>
+        <th>
+          From Date
+        </th>
+        <th>
+          To Date
+        </th>
+        <th>
+          AC Count
+        </th>
+        <th>
+          Assignment Count
+        </th>
+      </tr>
+      <tr *ngFor="let rfa of rfas" (select)="toggle(rfa)">
+        <td>
+          {{rfa.fromDate}}
+        </td>
+        <td>
+          {{rfa.toDate}}
+        </td>
+        <td>
+          {{rfa.noOfAc}}
+        </td>
+        <td>
+          {{rfa.noOfAssignments}}
+        </td>
+        <td>
+        <button (click)="showRfa(rfa)">Edit</button>
+        <button (click)="showRfa(rfa)">Delete</button>
+        <button (click)="showRfa(rfa)">New</button>
+        <button (click)="showRfa(rfa)">Show</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+
+    <div *ngIf="displayModal">
+  <new-rfa [rfa]="displayedRfa"></new-rfa>
+</div>
+  </div>
+  </div>
+</div>

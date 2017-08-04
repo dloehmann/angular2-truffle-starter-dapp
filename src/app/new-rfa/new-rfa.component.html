@@ -1,0 +1,36 @@
+<div style="text-align:left">
+  <h1>
+    New Rfa
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-responsive table-striped table-bordered table-hover">
+      <tr>
+        <th>
+          A/C Type
+        </th>
+        <th>
+          MSN
+        </th>
+        <th>
+          A/D's since
+        </th>
+      </tr>
+      <tr *ngFor="let newrfa of newrfas">
+        <td>
+          {{newrfa.acType}}
+        </td>
+        <td>
+          {{newrfa.msn}}
+        </td>
+        <td>
+          {{newrfa.adsSince}}
+        </td>
+
+      </tr>
+    </table>
+  </div>
+</div>
+

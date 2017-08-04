@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-const Web3 = require('web3');
-const contract = require('truffle-contract');
-const metaincoinArtifacts = require('../../build/contracts/MetaCoin.json');
+// const Web3 = require('web3');
+// const contract = require('truffle-contract');
+import * as metaincoinArtifacts from '../../build/contracts/MetaCoin.json';
+import { Web3 }  from 'web3';
+import { contract } from 'truffle-contract';
 import { canBeNumber } from '../util/validation';
 
 @Component({

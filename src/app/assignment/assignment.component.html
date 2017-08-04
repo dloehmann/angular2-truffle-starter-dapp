@@ -1,0 +1,125 @@
+<div style="text-align:left">
+  <h1>
+    Assignments
+  </h1>
+</div><!--<div class="row">-->
+<!--<div class="col-md-4">-->
+<!--<input *ngIf="config.filtering" placeholder="Filter all columns"-->
+<!--[ngTableFiltering]="config.filtering"-->
+<!--class="form-control"-->
+<!--(tableChanged)="onChangeTable(config)"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--<br>-->
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-responsive table-striped table-bordered table-hover">
+      <tr>
+        <th>
+          AD-Note No
+        </th>
+        <th>
+          Issue Date
+        </th>
+      </tr>
+      <tr *ngFor="let adnote of adnotes, let i = index" (click)="setClickedRowAdNote(adnote)" [class.active]="adnote == selectedRowAdNote">
+        <td>
+          {{adnote.no}}
+        </td>
+        <td>
+          {{adnote.date}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="col-md-4">
+    <!--<table  class="table table-responsive table-striped table-bordered table-hover">-->
+    <!--<tr>-->
+    <!--<th>-->
+    <!--Ref Type-->
+    <!--</th>-->
+    <!--</tr>-->
+    <!--<tr *ngFor="let reftype of reftypes">-->
+    <!--<td>-->
+    <!--{{reftype.name}}-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</table>-->
+
+    <form action="">
+      <table>
+        <tr *ngFor="let reftype of reftypes">
+          <td>
+        {{reftype.name}}
+          </td>
+          <td>
+
+          <input  name="options" ng-control="options" type="radio" [value]="reftype"
+             [(ngModel)]="selectedRefType" [checked] = "selectedRefType == refType">
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <!--<form name="myForm" ng-controller="ExampleController">-->
+    <!--<label>-->
+    <!--<input type="radio" ng-model="color.name" value="red">-->
+    <!--Red-->
+    <!--</label><br/>-->
+    <!--<label>-->
+    <!--<input type="radio" ng-model="color.name" ng-value="specialValue">-->
+    <!--Green-->
+    <!--</label><br/>-->
+    <!--<label>-->
+    <!--<input type="radio" ng-model="color.name" value="blue">-->
+    <!--Blue-->
+    <!--</label><br/>-->
+    <!--&lt;!&ndash;<tt>color = {{color.name | json}}</tt><br/>&ndash;&gt;-->
+    <!--</form>-->
+  </div>
+
+  <div class="col-md-4">
+    <table class="table table-responsive table-striped table-bordered table-hover">
+      <tr>
+        <th>
+          A/C Type
+        </th>
+        <th>
+          MSN
+        </th>
+      </tr>
+      <tr *ngFor="let actype of actypes, let i = index"  (click)="setClickedRowAcType(actype)" [class.active]="actype == selectedRowAcType">
+        <td>
+          {{actype.series}}
+        </td>
+        <td>
+          {{actype.msn}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+</div>
+<button (click)="saveAssignment()">Save Assignment</button>
+
+assignmentList: {{assignmentList.length}}
+<!--<ng-table [config]="config"-->
+<!--(tableChanged)="onChangeTable(config)"-->
+<!--(cellClicked)="onCellClick($event)"-->
+<!--[rows]="rows" [columns]="columns">-->
+<!--</ng-table>-->
+<!--<pagination *ngIf="config.paging"-->
+<!--class="pagination-sm"-->
+<!--[(ngModel)]="page"-->
+<!--[totalItems]="length"-->
+<!--[itemsPerPage]="itemsPerPage"-->
+<!--[maxSize]="maxSize"-->
+<!--[boundaryLinks]="true"-->
+<!--[rotate]="false"-->
+<!--(pageChanged)="onChangeTable(config, $event)"-->
+<!--(numPages)="numPages = $event">-->
+<!--</pagination>-->
+<!--<pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>-->
