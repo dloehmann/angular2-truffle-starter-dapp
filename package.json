@@ -22,7 +22,10 @@
     "@angular/router": "^3.4.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.1.0",
-    "web3": "^0.18.4",
+    "lht-bootstrap-npm": "file:lht-bootstrap-npm",
+    "babel-register": "^6.24.1",
+    "truffle-contract": "^2.0.5",
+    "web3": "^0.20.1",
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
@@ -63,7 +66,7 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
     "typescript": "~2.0.0",
-    "web3": "^0.18.2",
+    "web3": "^0.20.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   }

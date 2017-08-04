@@ -16,8 +16,12 @@ There are 2 small parts to successfully running this project.
 
 ### Part 1
 
-1. `git clone https://github.com/Nikhil22/angular2-truffle-starter-dapp.git`
+Unfortunately, this requires some more craftwork... yet!
+
+1. `git clone https://github.com/dloehmann/angular2-truffle-starter-dapp`
 2. `cd angular2-truffle-starter-dapp`
+3. `npm install`
+3. `npm install --save `
 3. `npm install`
 
 ### Part 2

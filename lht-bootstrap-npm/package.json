@@ -1,0 +1,53 @@
+{
+  "_from": "lht-bootstrap-npm@^1.0.3",
+  "_id": "lht-bootstrap-npm@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-N8k8cnqcQjBnWVE/PHFQlcMrpQ4=",
+  "_location": "/lht-bootstrap-npm",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "lht-bootstrap-npm@^1.0.3",
+    "name": "lht-bootstrap-npm",
+    "escapedName": "lht-bootstrap-npm",
+    "rawSpec": "^1.0.3",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.3"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://lht.app.lufthansa.com/artifactory/api/npm/npm-repos/lht-bootstrap-npm/-/lht-bootstrap-npm-1.0.3.tgz",
+  "_shasum": "37c93c727a9c42306759513f3c715095c32ba50e",
+  "_spec": "lht-bootstrap-npm@^1.0.3",
+  "_where": "D:\\BC4ADNotes\\angular2\\bc4ad-app",
+  "author": {
+    "name": "Thorsten Pohl, Jonas Janz"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "components-font-awesome": "~4.5.0"
+  },
+  "deprecated": false,
+  "description": "LHT-Bootstrap Theme CSS Only",
+  "devDependencies": {},
+  "ignore": [
+    "**/*.min.*"
+  ],
+  "license": "Proprietary",
+  "main": "lht-bootstrap/css/bootstrap.css",
+  "name": "lht-bootstrap-npm",
+  "publishConfig": {
+    "registry": "https://lht.app.lufthansa.com/artifactory/api/npm/npm-local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://lht.app.lufthansa.com/stash/scm/lhtrad/lht-bootstrap.git"
+  },
+  "scripts": {
+    "release": "npm version minor && npm publish && npm run push",
+    "snapshot": "npm version patch && npm publish && npm run push"
+  },
+  "version": "1.0.3"
+}
