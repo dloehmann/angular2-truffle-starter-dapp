@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
+import { AppComponent } from './content/app.component';
 
 import { HeaderComponent } from './header/header.component';
 import { AssignmentComponent } from './assignment/assignment.component';
@@ -18,6 +18,7 @@ import * as metaincoinArtifacts from '../../build/contracts/MetaCoin.json';
 import * as Web3 from "web3";
 import * as contract  from 'truffle-contract';
 import { canBeNumber } from '../util/validation';
+import { TrufflestarterComponent } from './trufflestarter/trufflestarter.component';
 
 @NgModule({
 imports: [
@@ -29,8 +30,12 @@ imports: [
   RouterModule.forRoot([
     {
       path: '',
-      redirectTo: '/assignments',
+      redirectTo: '/truffleStarter',
       pathMatch: 'full'
+    },
+    {
+      path: 'truffleStarter',
+      component: TrufflestarterComponent
     },
     {
       path: 'assignments',
@@ -58,7 +63,8 @@ imports: [
     VerificationComponent,
     RfaComponent,
     NewRfaComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    TrufflestarterComponent
   ],
   providers: [],
   bootstrap: [AppComponent, HeaderComponent]

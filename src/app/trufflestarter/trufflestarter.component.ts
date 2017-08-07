@@ -1,18 +1,33 @@
-import { Component } from '@angular/core';
 // const Web3 = require('web3');
 // const contract = require('truffle-contract');
-import * as metaincoinArtifacts from '../../build/contracts/MetaCoin.json';
+import * as metaincoinArtifacts from '../../../build/contracts/MetaCoin.json';
 import * as Web3 from 'web3';
 import * as contract  from "truffle-contract";
-import { canBeNumber } from '../util/validation';
-
-
+import { canBeNumber } from '../../util/validation';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'app-trufflestarter',
+  templateUrl: './trufflestarter.component.html',
+  styleUrls: ['./trufflestarter.component.css']
 })
-export class AppComponent {
+export class TrufflestarterComponent implements OnInit {
+
+//   constructor() { }
+//
+  ngOnInit() {
+  }
+//
+// }
+
+
+
+
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+// })
+// export class AppComponent {
   MetaCoin = contract(metaincoinArtifacts);
 
   // TODO add proper types these variables
@@ -113,3 +128,5 @@ export class AppComponent {
       });
   }
 }
+
+
