@@ -13,9 +13,11 @@ import {RouterModule} from "@angular/router";
 import { MyAccountComponent } from './my-account/my-account.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
-import { contract } from 'truffle-contract';
-import { Web3 }  from 'web3';
 
+import * as metaincoinArtifacts from '../../build/contracts/MetaCoin.json';
+import * as Web3 from "web3";
+import * as contract  from 'truffle-contract';
+import { canBeNumber } from '../util/validation';
 
 @NgModule({
 imports: [
@@ -50,7 +52,13 @@ imports: [
 
 ],
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    AssignmentComponent,
+    VerificationComponent,
+    RfaComponent,
+    NewRfaComponent,
+    MyAccountComponent
   ],
   providers: [],
   bootstrap: [AppComponent, HeaderComponent]
