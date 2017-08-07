@@ -13,8 +13,8 @@ import {RouterModule} from "@angular/router";
 import { MyAccountComponent } from './my-account/my-account.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
-import { Web3 }  from 'web3';
 import { contract } from 'truffle-contract';
+import { Web3 }  from 'web3';
 
 
 @NgModule({
