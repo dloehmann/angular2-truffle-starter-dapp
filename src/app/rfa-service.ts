@@ -12,13 +12,12 @@ import {Assignment} from "./domain/assignment";
 import {Observable} from "rxjs";
 import * as data from './../assets/acSeries.json';
 import * as adReview from '../assets/contracts/ADReview.json';
-import * as bcConnectorFactory from './bcConnector.js';
-import { contract }  from 'truffle-contract';
-// const Web3 = require('web3');
-// const contract = require('truffle-contract');
-// import { acTypesFile } from  './../assets/acSeries.json';  // URL to web api
-// const metaincoinArtifacts = require('../../build/contracts/MetaCoin.json');
+import * as adReviewApiFactory from './adReviewApi.js';
 
+import * as metaincoinArtifacts from '../../build/contracts/MetaCoin.json';
+import * as adReviewArtifacts from '../../build/contracts/ADReview.json';
+import * as Web3 from 'web3';
+import * as contract  from "truffle-contract";
 
 
 // import {require} from "@angular/core";
@@ -26,6 +25,14 @@ import { contract }  from 'truffle-contract';
 
 @Injectable()
 export class RfaService {
+  MetaCoin = contract(metaincoinArtifacts);
+  ADReview = contract(adReviewArtifacts);
+  adReviewApi = adReviewApiFactory(this.ADReview);
+
+  // TODO add proper types these variables
+  web3: any;
+  account: any;
+  accounts: any;
 
   private acTypeUrl = 'api/AIRCRAFTS';  // URL to web api
   private refTypeUrl = 'api/REFTYPES';  // URL to web api
@@ -43,13 +50,46 @@ export class RfaService {
     // this.assignmentList = [];
     // http.get('/assets/acSeries.json')
     //   .subscribe(res => console.log(res.json()));
+    this.checkAndInstantiateWeb3();
+    this.onReady();
   }
 
-  getRfas(): Promise<Rfa[]> {
-    return bcConnectorFactory(contract(adReview))
-      .promiseAcSeries().toPromise().then(response => response.json().data as Rfa[])
-      .catch(this.handleError);
+getRfas(): Promise<Rfa[]> {
+  return this.adReviewApi.promiseRfas()
+    .then(rfas => rfas.map((e,i)=>({
+        id:              i,
+        fromDate:        e[3],
+        toDate:          e[4],
+        noOfAc:          "8",
+        noOfAssignments: "772",
+    })))
+    .catch(this.handleError);
+}
+
+getAircrafts(): Promise<Rfa[]> {
+  return this.adReviewApi.promiseRfas()
+    .then(rfas => rfas.map((e,i)=>({id:e[1], msn:e[2]})))
+    .catch(this.handleError);
+}
+
+checkAndInstantiateWeb3 = () => {
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof this.web3 !== 'undefined') {
+    console.warn("Using this.web3 detected from external source. If you find that your accounts don't appear or you have 0 MetaCoin, ensure you've configured that source properly. If using MetaMask, see the following link. Feel free to delete this warning. :) http://truffleframework.com/tutorials/truffle-and-metamask")
+    // Use Mist/MetaMask's provider
+    this.web3 = new Web3(this.web3.currentProvider);
+  } else {
+    console.warn("No this.web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
+    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+    this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   }
+}
+
+onReady = () => {
+  // Bootstrap the MetaCoin abstraction for Use.
+  this.MetaCoin.setProvider(this.web3.currentProvider);
+  this.ADReview.setProvider(this.web3.currentProvider);
+}
 
   getNewRfas(): Promise<NewRfa[]> {
     return this.http.get(this.newRfasUrl)

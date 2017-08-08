@@ -14,7 +14,10 @@ import {RfaService} from "../rfa-service";
 
 export class RfaComponent implements OnInit {
 
-  rfas = RFAs;
+  rfaService : RfaService;
+
+  rfas : Rfa[];
+
   @Input() selectedRfa;
   @Input() displayedRfa;
   @Input() displayModal;
@@ -23,7 +26,6 @@ export class RfaComponent implements OnInit {
     this.selectedRfa = rfa;
     this.displayedRfa = this.selectedRfa;
     this.displayModal = true;
-
   }
 
   toggle(rfa: Rfa) {
@@ -32,17 +34,12 @@ export class RfaComponent implements OnInit {
     this.displayedRfa = undefined;
   }
 
-
-  constructor(rfaService:RfaService ) {
-    rfaService.getRfas().then(rfas => this.rfas= rfas)
-
+  constructor(rfaService: RfaService) {
+    rfaService.getRfas().then(rfas => this.rfas = rfas)
+    .then(rfas => console.log('RFA:>',rfas));
   }
 
   ngOnInit() {
   }
-
-
-
-
 
 }
