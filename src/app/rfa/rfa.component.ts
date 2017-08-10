@@ -27,13 +27,21 @@ export class RfaComponent implements OnInit {
     this.displayedRfa = this.selectedRfa;
     this.displayModal = true;
   }
+  
+  deleteRfa(rfa: Rfa) {
 
-  toggle(rfa: Rfa) {
+  }
+
+  editRfa(rfa: Rfa) {
+    this.displayModal = !this.displayModal;
+  }
+
+  newRfa() {
+    // this.selectedRfa = rfa;
     // this.selectedRfa = rfa;
     this.displayModal = !this.displayModal;
     this.displayedRfa = undefined;
   }
-
   constructor(rfaService: RfaService) {
     rfaService.getRfas().then(rfas => this.rfas = rfas)
     .then(rfas => console.log('RFA:>',rfas));
