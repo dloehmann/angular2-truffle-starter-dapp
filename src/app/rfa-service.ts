@@ -11,7 +11,6 @@ import 'rxjs/add/operator/toPromise';
 import {Assignment} from "./domain/assignment";
 import {Observable} from "rxjs";
 import * as data from './../assets/acSeries.json';
-import * as adReview from '../assets/contracts/ADReview.json';
 import * as adReviewApiFactory from './adReviewApi.js';
 
 import * as metaincoinArtifacts from '../../build/contracts/MetaCoin.json';
