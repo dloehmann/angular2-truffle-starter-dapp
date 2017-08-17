@@ -26,7 +26,35 @@ import * as contract  from "truffle-contract";
 export class RfaService {
   MetaCoin = contract(metaincoinArtifacts);
   ADReview = contract(adReviewArtifacts);
-  adReviewApi = adReviewApiFactory(this.ADReview);
+  adReviewApi = adReviewApiFactory(this.ADReview).initEventListeners({
+      onRfaChanged: (rfaId: number) => {
+          //ToDo
+          //        var id = rfaId;
+          //        var pos = this.rfas.findIndex((e,i) => e.id == id);
+          //        if (pos >=0) this.rfas.splice(pos,1);
+          console.log("NOT_IMPLEMENTED: onRfaChanged");
+      },
+      onNewADNote: (adNoteId: number) => {
+          //ToDo
+          console.log("NOT_IMPLEMENTED: onNewADNote");
+      },
+      onNewAssignmentAnnonce: (sender: string, rfaId: number, assAnnId: number) => {
+          //ToDo
+          console.log("NOT_IMPLEMENTED: onNewAssignmentAnnonce");
+      },
+      onNewAssignment: (rfaId: number, assId: number) => {
+          //ToDo
+          console.log("NOT_IMPLEMENTED: onNewAssignment");
+      },
+      onAssignmentDepositClaimed: (rfaId: number, assignmentId: number) => {
+          //ToDo
+          console.log("NOT_IMPLEMENTED: onAssignmentDepositClaimed");
+      },
+      onCorrectAssignmentDetermined: (rfaId: number) => {
+          //ToDo
+          console.log("NOT_IMPLEMENTED: onCorrectAssignmentDetermined");
+      }
+  });
 
   // TODO add proper types these variables
   web3: any;
@@ -44,8 +72,6 @@ export class RfaService {
   constructor(private http: Http) {
     // http.request('assets/acSeries.json')
     //   .subscribe(res => console.log(res));
-    console.log(data);
-    console.log(adReview);
     // this.assignmentList = [];
     // http.get('/assets/acSeries.json')
     //   .subscribe(res => console.log(res.json()));
@@ -62,6 +88,11 @@ getRfas(): Promise<Rfa[]> {
         noOfAc:          "8",
         noOfAssignments: "772",
     })))
+    .catch(this.handleError);
+}
+
+abortRfa(id) {
+  return this.adReviewApi.abortRfa(id)
     .catch(this.handleError);
 }
 

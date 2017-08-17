@@ -27,10 +27,16 @@ export class RfaComponent implements OnInit {
     this.displayedRfa = this.selectedRfa;
     this.displayModal = true;
   }
-  
-  deleteRfa(rfa: Rfa) {
 
+  abortRfa(rfa: Rfa) {
+    //ToDo: set line color gray
+    this.rfaService.abortRfa(rfa.id);
   }
+
+  onRfaChanged(rfaId: number) {
+    //ToDo: rfa changed: reload line or whole table
+  }
+
 
   editRfa(rfa: Rfa) {
     this.displayModal = !this.displayModal;

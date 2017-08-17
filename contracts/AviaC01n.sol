@@ -15,7 +15,6 @@ contract AviaC01n  {
 		balances[msg.sender] = totalSupply;
 	}
 
-
 	/// explicitely reject ethers
 	function () { revert(); }
 
@@ -27,7 +26,7 @@ contract AviaC01n  {
 
 	/// ====== ERC20 implementation starts here =====
 
-    function transfer(address _to, uint256 _value) returns (bool success) {
+   function transfer(address _to, uint256 _value) returns (bool success) {
         if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
             balances[msg.sender] -= _value;
             balances[_to] += _value;
@@ -70,6 +69,16 @@ contract AviaC01n  {
         return true;
     }
 
+    function withdraw(address from,  uint _value) internal returns(bool) {
+        var _to = this;
+        if (balances[from] >= _value && balances[_to] + _value > balances[_to]) {
+            balances[from] -= _value;
+            balances[_to] += _value;
+            Transfer(from, _to, _value);
+            return true;
+        } else { return false; }
+    }
+
     /// ======= events  =======
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
@@ -77,6 +86,6 @@ contract AviaC01n  {
     /// ======= states =====
     mapping (address => uint256) balances;
     mapping (address => mapping (address => uint256)) allowed;
-	uint256 public constant totalSupply = 10000000 * 1 finney;
+	  uint256 public constant totalSupply = 10000000 * 1 finney;
 
 }
