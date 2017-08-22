@@ -77,7 +77,7 @@ contract ADReview is AviaC01n {
     function abortRfA(uint rfaId) {
         require(rfaId <= maxRfaId);
         require(rfas[rfaId].state == RfaState.ACTIVE);
-        rfas[rfaId].state == RfaState.ABORTED;
+        rfas[rfaId].state = RfaState.ABORTED;
         RfaChanged(rfaId);
     }
 

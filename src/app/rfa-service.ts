@@ -27,30 +27,36 @@ export class RfaService {
   MetaCoin = contract(metaincoinArtifacts);
   ADReview = contract(adReviewArtifacts);
   adReviewApi = adReviewApiFactory(this.ADReview).initEventListeners({
-      onRfaChanged: (rfaId: number) => {
+      //onRfaChanged: (rfaId: number) => {
+      onRfaChanged: (json_evtArgs : any) => {
           //ToDo
           //        var id = rfaId;
           //        var pos = this.rfas.findIndex((e,i) => e.id == id);
           //        if (pos >=0) this.rfas.splice(pos,1);
           console.log("NOT_IMPLEMENTED: onRfaChanged");
       },
-      onNewADNote: (adNoteId: number) => {
+      //onNewADNote: (adNoteId: number) => {
+      onNewADNote: (json_evtArgs : any) => {
           //ToDo
           console.log("NOT_IMPLEMENTED: onNewADNote");
       },
-      onNewAssignmentAnnonce: (sender: string, rfaId: number, assAnnId: number) => {
+      //onNewAssignmentAnnonce: (sender: string, rfaId: number, assAnnId: number) => {
+      onNewAssignmentAnnonce: (json_evtArgs : any) => {
           //ToDo
           console.log("NOT_IMPLEMENTED: onNewAssignmentAnnonce");
       },
-      onNewAssignment: (rfaId: number, assId: number) => {
+      //onNewAssignment: (rfaId: number, assId: number) => {
+      onNewAssignment: (json_evtArgs : any) => {
           //ToDo
           console.log("NOT_IMPLEMENTED: onNewAssignment");
       },
-      onAssignmentDepositClaimed: (rfaId: number, assignmentId: number) => {
+      //onAssignmentDepositClaimed: (rfaId: number, assignmentId: number) => {
+      onAssignmentDepositClaimed: (json_evtArgs : any) => {
           //ToDo
           console.log("NOT_IMPLEMENTED: onAssignmentDepositClaimed");
       },
-      onCorrectAssignmentDetermined: (rfaId: number) => {
+      //onCorrectAssignmentDetermined: (rfaId: number) => {
+      onCorrectAssignmentDetermined: (json_evtArgs : any) => {
           //ToDo
           console.log("NOT_IMPLEMENTED: onCorrectAssignmentDetermined");
       }
