@@ -31,7 +31,10 @@ contract('ADReview', function(accounts) {
     });
 
     it("should add RFA list and fire onRfaChanged event", function() {
-        return adReviewApi.addRfAList(["0x000100250133"], "0x0144", 13)
+        return adReviewApi.addRfAList([{
+            actypeId:0x0001,
+            msn: 0x0025,
+            dateFrom: 0x0133}], '0x0144', 13)
         .then(tx => new Promise((resolve, err) => resolveWithEvent=resolve))
         .then(e => {
             assert.equal('onRfaChanged', e._name, 'unexpected event');
@@ -53,7 +56,7 @@ contract('ADReview', function(accounts) {
         });
     });
 
-    it("should abort and change to ABORTED state", function() {
+    it("should abort and change to ABORTED state (=2)", function() {
         return adReviewApi.abortRfA(1)
         .then(tx => new Promise((resolve, err) => resolveWithEvent=resolve))
         .then(e => {
@@ -64,4 +67,5 @@ contract('ADReview', function(accounts) {
             assert.equal(2, rfa[6], 'unexpected state');
         });
     });
+
 });

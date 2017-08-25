@@ -1,5 +1,13 @@
 module.exports =  function(ADReview) {
     let activeFilters = [];
+    function _compactRfaList(rfasList) {
+      let pad4 = s => ('0000' + s).substring(0, 4 - s.length) + s;
+      return rfasList.map((e,i) =>
+         '0x' + pad4(e.actypeId.toString(16))
+          + pad4(e.msn.toString(16))
+          + pad4(e.dateFrom.toString(16))
+      );
+    }
     return {
         promiseRfas : function promiseRfas() {
             return ADReview.deployed()
@@ -23,7 +31,10 @@ module.exports =  function(ADReview) {
                 .then(adReview => adReview.abortRfA(rfaId));
         },
 
-        addRfAList : function addRfAList(rfas_data, valid_until, numOfReviews) {
+        compactRfaList : _compactRfaList,
+
+        addRfAList : function addRfAList(rfasList, valid_until, numOfReviews) {
+            let rfas_data = _compactRfaList(rfasList);
             return ADReview.deployed()
                 .then(adReview => adReview.addRfAList(rfas_data, valid_until, numOfReviews));
         },

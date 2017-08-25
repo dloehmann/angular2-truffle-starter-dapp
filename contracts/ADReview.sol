@@ -2,6 +2,8 @@ pragma solidity ^0.4.11;
 
 import "./AviaC01n.sol";
 
+//ToDo: security and access restrictions 
+
 contract ADReview is AviaC01n {
 
     bytes3 constant public version = 0x000100;
